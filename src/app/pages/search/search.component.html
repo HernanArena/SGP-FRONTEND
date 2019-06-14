@@ -8,7 +8,7 @@
                      name = "versionseleccionada"
                      id="inputVersion"
                      [(ngModel)]="_versionseleccionada"
-                     (change)="recuperarVersion(versionseleccionada.value)"
+                     (change)="grabaFiltroVersion(versionseleccionada.value)"
                      placeholder="Versión"
                      #versionseleccionada = "ngModel">
           </div>
@@ -20,7 +20,7 @@
                     name = "moduloseleccionado"
                      [(ngModel)]="_moduloseleccionado"
                     style="width: 100%; height:36px;"
-                    (change)="recuperarModulos(moduloseleccionado.value)"
+                    (change)="grabaFiltroModulo(moduloseleccionado.value)"
                     #moduloseleccionado="ngModel">
 
               <optgroup label="Seleccione un módulo">
@@ -37,7 +37,7 @@
                     name="objetoseleccionado"
                     style="width: 100%; height:36px;"
                      [(ngModel)]="_objetoseleccionado"
-                    (change)="grabaFiltros(objetoseleccionado.value)"
+                    (change)="grabaFiltroObjeto(objetoseleccionado.value)"
                     #objetoseleccionado="ngModel">
               <optgroup label="Seleccione un objeto del sistema">
                   <option *ngFor="let idx of objetos" value="{{idx.codigo}}">{{idx.codigo}} - {{idx.descripcion}}</option>

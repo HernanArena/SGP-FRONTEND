@@ -23,7 +23,7 @@ export class SearchComponent implements OnInit,OnDestroy{
 
   modulo:string;
   version:number;
-
+  objeto:string;
 
   constructor(public _sp:SearchService,
               public store:Store<AppState>,
@@ -31,8 +31,8 @@ export class SearchComponent implements OnInit,OnDestroy{
     this.moduloSubscription = this._sp.getmodulos().subscribe(modulos=>{
       this.modulos = modulos;
     });
-    this.storeSubscription = this.store.select('parte').subscribe(data=>{
-      if(data.loaded){
+    this.storeSubscription = this.store.select('cargaresults').subscribe(data=>{
+      if(data.oktonavigate){
          this.router.navigate(['/resultados']);
       }
     });
@@ -50,8 +50,23 @@ export class SearchComponent implements OnInit,OnDestroy{
     this.modulo = modulo;
     this.objetos = this._sp.getObjetosConFiltro(modulo);
   }
-  grabaFiltros(objeto:string){
+  recuperarObjeto(objeto:string){
+    this.objeto = objeto;
+  }
+
+  grabaFiltroObjeto(objeto:string){
+    this.recuperarObjeto(objeto);
     let filtros = new Filtro(this.version,this.modulo,objeto,"");
+    this._sp.guardarFiltrosStore(filtros);
+  }
+  grabaFiltroVersion(version:number){
+    this.recuperarVersion(version);
+    let filtros = new Filtro(version,this.modulo,this.objeto,"");
+    this._sp.guardarFiltrosStore(filtros);
+  }
+  grabaFiltroModulo(modulo:string){
+    this.recuperarModulos(modulo);
+    let filtros = new Filtro(this.version,modulo,this.objeto,"");
     this._sp.guardarFiltrosStore(filtros);
   }
   ngOnDestroy(): void {

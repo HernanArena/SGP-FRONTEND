@@ -22,7 +22,6 @@ export function filterReducers (state:filterState = initState,action: fromFilter
       };
     case fromFilterActions.AGREGAR_FILTER:
       return {
-
         filtro: {...state.filtro,
           termino: action.termino
         }

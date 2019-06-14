@@ -7,6 +7,7 @@ export interface BuscarPartesState{
   loaded: boolean;
   loading: boolean;
   error: any;
+  oktonavigate:boolean;
 }
 
 const estadoInicial:BuscarPartesState =  {
@@ -14,7 +15,8 @@ const estadoInicial:BuscarPartesState =  {
   termino: null,
   loaded: false,
   loading: false,
-  error: null
+  error: null,
+  oktonavigate: false
 };
 
 export function buscarParteReducer(state = estadoInicial, action: fromBuscarPartes.buscadorParteAcciones):BuscarPartesState{
@@ -25,7 +27,8 @@ export function buscarParteReducer(state = estadoInicial, action: fromBuscarPart
         loaded:true,
         loading: false,
         error:null,
-        termino: action.termino
+        termino: action.termino,
+        oktonavigate: false
         };
     case fromBuscarPartes.CARGAR_PARTES_SUCCESS:
       return {
@@ -33,21 +36,30 @@ export function buscarParteReducer(state = estadoInicial, action: fromBuscarPart
         loaded:true,
         loading:false,
         error: null,
-        parte:[...action.parte]
+        parte:[...action.parte],
+        oktonavigate: true
       };
     case fromBuscarPartes.CARGAR_PARTES_FAIL:
       return {
         ...state,
         loaded: false,
         loading: false,
+        oktonavigate: false,
         error: {
           status: action.payload.status,
           message: action.payload.message,
           url: action.payload.url
         }
       };
+    case fromBuscarPartes.MODIFICAR_OKTONAVIGATE:
+      return {
+          ...state,
+          oktonavigate: action.oktonavigate
+        }
+
 
     default:
       return state;
-  }
+
+    };
 }
