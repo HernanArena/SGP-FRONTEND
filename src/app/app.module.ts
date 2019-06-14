@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 //@Ngrx
 import { StoreModule } from '@ngrx/store';
-import { appReducers } from './store/app.reducer';
+import { appReducers, metaReducers } from './store/app.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { AllEffects } from './store/effects';
@@ -42,8 +42,8 @@ import { APP_ROUTING } from './app-routing.module';
     SharedModule,
     RouterModule,
     ServicesModule,
-    StoreModule.forRoot(appReducers),
-    // EffectsModule.forRoot(AllEffects),
+    StoreModule.forRoot(appReducers,{metaReducers}),
+    EffectsModule.forRoot(AllEffects),
     StoreDevtoolsModule.instrument({
      maxAge: 25, // Retains last 25 states
      logOnly: environment.production, // Restrict extension to log-only mode

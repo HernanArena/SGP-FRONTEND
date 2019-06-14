@@ -12,7 +12,6 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   }
   mostrarlo(){
-    console.log(this.mostrar)
     this.mostrar = !this.mostrar;
   }
 

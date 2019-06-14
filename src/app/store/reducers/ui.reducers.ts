@@ -1,15 +1,15 @@
 
-import * as fromUIActions from '../actions';
+import * as fromUIActions from '../actions/ui.actions';
 
-export interface State {
+export interface UIState {
   isLoading: boolean
 };
 
-const initState: State = {
+const initState: UIState = {
   isLoading: false
 };
 
-export function uiReducers (state:State = initState,action: fromUIActions.acciones):State{
+export function uiReducers (state:UIState = initState,action: fromUIActions.loadingAcciones):UIState{
   switch(action.type){
     case fromUIActions.ACTIVAR_LOADING:
       return {

@@ -21,7 +21,7 @@ export class SidebarComponent implements OnInit {
     this.store.select('usuario').subscribe((data:fromUsuario.UsuarioState)=>{
       this.usuario = data.user;
      });
-    this.usuario = this._us.usuario;
+    // this.usuario = this._us.usuario;
      // this._sidebar.cargarMenu();
      this._sidebar.menu;
   }

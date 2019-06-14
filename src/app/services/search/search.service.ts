@@ -1,19 +1,24 @@
 import { Injectable } from '@angular/core';
 import { Parte } from 'src/app/models/parte.model';
+import { Observable } from 'rxjs/internal/Observable';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/store/app.reducer';
+import { Filtro } from 'src/app/models/filtro.model';
+import { CargarFilterAction } from 'src/app/store/actions';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SearchService {
-  Partes:Parte[] =[
+  partes:Parte[] =[
     {
-      Codigo: "KT",
-      Numero: 123,
-      Modulo: "FC",
-      Objeto: "FCRMVH",
-      Version: 430,
-      Fecha_de_liberacion: "2019-03-01",
-      Descripcion:`Aplicación
+      codigo: "KT",
+      numero: 123,
+      modulo: "FC",
+      objeto: "FCRMVH",
+      version: 430,
+      fecha_de_liberacion: "2019-03-01",
+      descripcion:`Aplicación
                     Exportacion de transacciones (INIMTRSXWIZ).
 
                     Al elegir una interfaz y tildarla, el sistema no habilita los campos VIRT_TXTPAT ni VIRT_TXTNAM en el paso "Ingreso del tipo de transaccion" (INIMTRSX02).
@@ -24,24 +29,41 @@ export class SearchService {
                     `
     },
     {
-      Codigo: "AH",
-      Numero: 132,
-      Modulo: "VT",
-      Objeto: "VTMCLH",
-      Version: 370,
-      Fecha_de_liberacion: "2018-05-21",
-      Descripcion:`Registración de Notas (EDRNVH)
+      codigo: "HA",
+      numero: 126,
+      modulo: "AG",
+      objeto: "AG_PEN_COS",
+      version: 410,
+      fecha_de_liberacion: "2019-06-14",
+      descripcion:`Aplicación
+                    Exportacion de transacciones (INIMTRSXWIZ).
+
+                    Al elegir una interfaz y tildarla, el sistema no habilita los campos VIRT_TXTPAT ni VIRT_TXTNAM en el paso "Ingreso del tipo de transaccion" (INIMTRSX02).
+
+                    Esto no permite avanzar en el proceso, HERNY dado que el sistema siempre da el error de "Archivo inexistente".
+
+                    La version de la dll IN_WW_EXPTRA.dll es la 3.7.0.201
+                    `
+    },
+    {
+      codigo: "AH",
+      numero: 132,
+      modulo: "VT",
+      objeto: "VTMCLH",
+      version: 370,
+      fecha_de_liberacion: "2018-05-21",
+      descripcion:`Registración de Notas (EDRNVH)
                     Problema
                     Cuando se utiliza el campo EDTTCH_PROMED en "Comun" y el campo EDTEVI_CNDDCM en 0,5 al registrar las notas el sistema no calcula el Promedio y lo deja en 0.`
     },
     {
-      Codigo: "GR",
-      Numero: 1141,
-      Modulo: "CO",
-      Objeto: "COTCIH",
-      Version: 410,
-      Fecha_de_liberacion: "2016-02-7",
-      Descripcion:`De: Claudio Trosch - Intercap S.R.L.
+      codigo: "GR",
+      numero: 1141,
+      modulo: "CO",
+      objeto: "COTCIH",
+      version: 410,
+      fecha_de_liberacion: "2016-02-7",
+      descripcion:`De: Claudio Trosch - Intercap S.R.L.
                     Fecha: 20 de febrero de 2014, 9:14
                     Asunto: Soporte magnético - Retenciones IVA
                     Para: Soporte Softland
@@ -54,133 +76,135 @@ export class SearchService {
                     Gracias `
     }
   ];
-
-  Modulos:any[] =[
-    {   Codigo: "AG",Descripcion: "Gestión Agropecuaria"},
-    {   Codigo: "AU",Descripcion: "Autorizaciones"},
-    {   Codigo: "CB",Descripcion: "Conciliación Bancaria"},
-    {   Codigo: "CF",Descripcion: "Cash Flow"},
-    {   Codigo: "CG",Descripcion: "Contabilidad"},
-    {   Codigo: "CJ",Descripcion: "Tesorería"},
-    {   Codigo: "CO",Descripcion: "Compras"},
-    {   Codigo: "CP",Descripcion: "Control Presupuestario"},
-    {   Codigo: "CT",Descripcion: "Costos"},
-    {   Codigo: "CV",Descripcion: "Facturación de Contratos"},
-    {   Codigo: "DG",Descripcion: "Impuestos"},
-    {   Codigo: "DP",Descripcion: "Depuraciones"},
-    {   Codigo: "DY",Descripcion: "Tabla de Migracion con el Sistema America"},
-    {   Codigo: "EC",Descripcion: "E-Commerce"},
-    {   Codigo: "ED",Descripcion: "Gestión Educativa"},
-    {   Codigo: "EO",Descripcion: "Análisis de Gestión Financiera (EOAF)"},
-    {   Codigo: "FC",Descripcion: "Facturación"},
-    {   Codigo: "GC",Descripcion: "Gestión Comercial"},
-    {   Codigo: "GP",Descripcion: "Gestión de Proyectos"},
-    {   Codigo: "GR",Descripcion: "General"},
-    {   Codigo: "IG",Descripcion: "Informes Gerenciales"},
-    {   Codigo: "IM",Descripcion: "Importaciones"},
-    {   Codigo: "IN",Descripcion: "Interfases"},
-    {   Codigo: "ME",Descripcion: "Mantenimiento de Equipos y Vehículos"},
-    {   Codigo: "PD",Descripcion: "Producción"},
-    {   Codigo: "PM",Descripcion: "Administración de Proyectos"},
-    {   Codigo: "PV",Descripcion: "Proveedores"},
-    {   Codigo: "RH",Descripcion: "Recursos Humanos"},
-    {   Codigo: "RP",Descripcion: "Repartos"},
-    {   Codigo: "RV",Descripcion: "Activo Fijo"},
-    {   Codigo: "SJ",Descripcion: "Sueldos y Jornales"},
-    {   Codigo: "SP",Descripcion: "Seguimiento de Proyectos"},
-    {   Codigo: "ST",Descripcion: "Stock"},
-    {   Codigo: "TR",Descripcion: "Transferencias"},
-    {   Codigo: "VT",Descripcion: "Clientes"},
-    {   Codigo: "WA",Descripcion: "Autorización"},
-    {   Codigo: "WG",Descripcion: "Wizard Generator"}
+  modulos:modulo[] =[
+    {   codigo: "AG", descripcion: "Gestión Agropecuaria"},
+    {   codigo: "AU", descripcion: "Autorizaciones"},
+    {   codigo: "CB", descripcion: "Conciliación Bancaria"},
+    {   codigo: "CF", descripcion: "Cash Flow"},
+    {   codigo: "CG", descripcion: "Contabilidad"},
+    {   codigo: "CJ", descripcion: "Tesorería"},
+    {   codigo: "CO", descripcion: "Compras"},
+    {   codigo: "CP", descripcion: "Control Presupuestario"},
+    {   codigo: "CT", descripcion: "Costos"},
+    {   codigo: "CV", descripcion: "Facturación de Contratos"},
+    {   codigo: "DG", descripcion: "Impuestos"},
+    {   codigo: "DP", descripcion: "Depuraciones"},
+    {   codigo: "DY", descripcion: "Tabla de Migracion con el Sistema America"},
+    {   codigo: "EC", descripcion: "E-Commerce"},
+    {   codigo: "ED", descripcion: "Gestión Educativa"},
+    {   codigo: "EO", descripcion: "Análisis de Gestión Financiera (EOAF)"},
+    {   codigo: "FC", descripcion: "Facturación"},
+    {   codigo: "GC", descripcion: "Gestión Comercial"},
+    {   codigo: "GP", descripcion: "Gestión de Proyectos"},
+    {   codigo: "GR", descripcion: "General"},
+    {   codigo: "IG", descripcion: "Informes Gerenciales"},
+    {   codigo: "IM", descripcion: "Importaciones"},
+    {   codigo: "IN", descripcion: "Interfases"},
+    {   codigo: "ME", descripcion: "Mantenimiento de Equipos y Vehículos"},
+    {   codigo: "PD", descripcion: "Producción"},
+    {   codigo: "PM", descripcion: "Administración de Proyectos"},
+    {   codigo: "PV", descripcion: "Proveedores"},
+    {   codigo: "RH", descripcion: "Recursos Humanos"},
+    {   codigo: "RP", descripcion: "Repartos"},
+    {   codigo: "RV", descripcion: "Activo Fijo"},
+    {   codigo: "SJ", descripcion: "Sueldos y Jornales"},
+    {   codigo: "SP", descripcion: "Seguimiento de Proyectos"},
+    {   codigo: "ST", descripcion: "Stock"},
+    {   codigo: "TR", descripcion: "Transferencias"},
+    {   codigo: "VT", descripcion: "Clientes"},
+    {   codigo: "WA", descripcion: "Autorización"},
+    {   codigo: "WG", descripcion: "Wizard Generator"}
   ];
-
-  Objetos:any[] = [
-    {   Codigo: "ACTSTWIZ", Descripcion: "Contabilización de Costos", Modulo: "ST"},
-    {   Codigo: "ADMIN - GRAERH", Descripcion: "Entidad Relacional", Modulo: "GR"},
-    {   Codigo: "AE_DEPURACION", Descripcion: "AE - Depuración de Compras", Modulo: "AE"},
-    {   Codigo: "AE_DEPURACIONFC", Descripcion: "AE - Depuración de Facturación", Modulo: "AE"},
-    {   Codigo: "AG_PEN_ANU_EXE", Descripcion: "AG - Pendientes de anulación (Grupo)", Modulo: "AE"},
-    {   Codigo: "AG_PEN_ANU_PAR", Descripcion: "AG - Pendientes de anulación (Grupo)", Modulo: "AG"},
-    {   Codigo: "AG_PEN_COS", Descripcion: "AG - Pendientes de cosecha", Modulo: "AG"},
-    {   Codigo: "AG_PEN_DET", Descripcion: "AG - Pendientes de siembra (Detalle)", Modulo: "AG"},
-    {   Codigo: "AG_PEN_GEN", Descripcion: "AG - Pendientes de generación de consumos", Modulo: "AG"},
-    {   Codigo: "AG_PEN_GRP", Descripcion: "AG - Pendientes de siembra (Grupo)", Modulo: "AE"},
-    {   Codigo: "AG_PEN_INF", Descripcion: "AG - Pendientes para informes de servicio de compras (Sin req. en AG)", Modulo: "AG"},
-    {   Codigo: "AG_PEN_INF_FOR", Descripcion: "AG - Pendientes para informes de servicio de compras (Con req. en AG)", Modulo: "AG"},
-    {   Codigo: "AG_PEN_ORD_DET", Descripcion: "AG - Pendientes de simulación (Detalle)", Modulo: "AG"},
-    {   Codigo: "AG_PEN_ORD_GRP", Descripcion: "AG - Planes de siembra (Grupo)", Modulo: "AG"},
-    {   Codigo: "AG_PEN_REQ", Descripcion: "AG - Pendientes para requerimientos de compras", Modulo: "AG"},
-    {   Codigo: "AG_PEN_SIE_DET", Descripcion: "AG - Pendientes de siembra (Detalle)", Modulo: "AG"},
-    {   Codigo: "AG_PEN_SIE_GRP", Descripcion: "AG - Pendientes de siembra (Grupo)", Modulo: "AG"},
-    {   Codigo: "AG_PEN_SIM_DET", Descripcion: "AG - Pendientes de simulación (Detalle)", Modulo: "AG"},
-    {   Codigo: "AG_PEN_SIM_GRP", Descripcion: "AG - Pendientes de simulación (Grupo)", Modulo: "AG"},
-    {   Codigo: "AG_STK_DET", Descripcion: "AG - Pendientes de productos (Detalle)", Modulo: "AG"},
-    {   Codigo: "AG_STK_GRP", Descripcion: "AG - Pendientes de productos (Grupo)", Modulo: "AG"},
-    {   Codigo: "AGC_CBH_LST", Descripcion: "AG - Comprobantes de agro", Modulo: "AG"},
-    {   Codigo: "AGCCBH", Descripcion: "Comprobantes de agro", Modulo: "AG"},
-    {   Codigo: "AGCORMVHWIZ", Descripcion: "Generación de requerimientos de compras", Modulo: "AG"},
-    {   Codigo: "AGINFSERWIZ", Descripcion: "Generación de informes de servicios de compras", Modulo: "AG"},
-    {   Codigo: "AGM_CAH_LST", Descripcion: "AG - Establecimientos", Modulo: "AG"},
-    {   Codigo: "AGMCAH", Descripcion: "Maestro de Establecimientos", Modulo: "AG"},
-    {   Codigo: "AGPARAMWIZ", Descripcion: "Definición de parametros de gestión agropecuaria", Modulo: "AG"},
-    {   Codigo: "AGR_APL_LST", Descripcion: "AG - Aplicaciones de Agro", Modulo: "AG"},
-    {   Codigo: "AGR_MVH_LST", Descripcion: "AG - Movimientos de Agro", Modulo: "AG"},
-    {   Codigo: "AGR_MVH_PCI", Descripcion: "AG - Ordenes de siembra pendientes de cierre (Grupo)", Modulo: "AG"},
-    {   Codigo: "AGR_MVH_PRV", Descripcion: "AG - Ordenes de siembra finalizadas (Grupo)", Modulo: "AG"},
-    {   Codigo: "AGRMVH", Descripcion: "Registración de Gestión Agropecuaria", Modulo: "AG"},
-    {   Codigo: "AGRMVHAPLUPDWIZ", Descripcion: "Modificación de aplicaciones de Gestión Agropecuaria", Modulo: "AG"},
-    {   Codigo: "AGRMVHUPD", Descripcion: "Modificación de comprobantes de Gestión Agropecuaria", Modulo: "AG"},
-    {   Codigo: "AGRMVHWIZ", Descripcion: "Registración de gestión agropecuaria", Modulo: "AG"},
-    {   Codigo: "AGT_ACT_LST", Descripcion: "AG - Labores", Modulo: "AG"},
-    {   Codigo: "AGT_ATH_LST", Descripcion: "AG - Atributos", Modulo: "AG"},
-    {   Codigo: "AGT_CAH_LST", Descripcion: "AG - Campañas", Modulo: "AG"},
-    {   Codigo: "AGT_CIH_LST", Descripcion: "AG - Circuitos de agro", Modulo: "AG"},
-    {   Codigo: "AGT_CIR_LST", Descripcion: "AG - Códigos de circuitos de agro", Modulo: "AG"},
-    {   Codigo: "AGT_FOH_LST", Descripcion: "AG - Composición de Recetas", Modulo: "AG"},
-    {   Codigo: "AGT_FOI_LST", Descripcion: "AG - Composición de receta", Modulo: "AG"},
-    {   Codigo: "AGT_FOR_LST", Descripcion: "AG - Tipo de Recetas", Modulo: "AG"},
-    {   Codigo: "AGT_REH_LST", Descripcion: "AG - Responsables", Modulo: "AG"},
-    {   Codigo: "AGT_TCH_LST", Descripcion: "AG - Tipo de Establecimiento", Modulo: "AG"},
-    {   Codigo: "AGT_TEH_LST", Descripcion: "AG - Tipo de Explotación", Modulo: "AG"},
-    {   Codigo: "AGT_VAR_LST", Descripcion: "AG - Variedad", Modulo: "AG"},
-    {   Codigo: "AGTACT", Descripcion: "Labores", Modulo: "AG"},
-    {   Codigo: "AGTATH", Descripcion: "Atributos", Modulo: "AG"}
+  objetos:any[] = [
+    {   codigo: "ACTSTWIZ", descripcion: "Contabilización de Costos", modulo: "ST"},
+    {   codigo: "ADMIN - GRAERH", descripcion: "Entidad Relacional", modulo: "GR"},
+    {   codigo: "AE_DEPURACION", descripcion: "AE - Depuración de Compras", modulo: "AE"},
+    {   codigo: "AE_DEPURACIONFC", descripcion: "AE - Depuración de Facturación", modulo: "AE"},
+    {   codigo: "AG_PEN_ANU_EXE", descripcion: "AG - Pendientes de anulación (Grupo)", modulo: "AE"},
+    {   codigo: "AG_PEN_ANU_PAR", descripcion: "AG - Pendientes de anulación (Grupo)", modulo: "AG"},
+    {   codigo: "AG_PEN_COS", descripcion: "AG - Pendientes de cosecha", modulo: "AG"},
+    {   codigo: "AG_PEN_DET", descripcion: "AG - Pendientes de siembra (Detalle)", modulo: "AG"},
+    {   codigo: "AG_PEN_GEN", descripcion: "AG - Pendientes de generación de consumos", modulo: "AG"},
+    {   codigo: "AG_PEN_GRP", descripcion: "AG - Pendientes de siembra (Grupo)", modulo: "AE"},
+    {   codigo: "AG_PEN_INF", descripcion: "AG - Pendientes para informes de servicio de compras (Sin req. en AG)", modulo: "AG"},
+    {   codigo: "AG_PEN_INF_FOR", descripcion: "AG - Pendientes para informes de servicio de compras (Con req. en AG)", modulo: "AG"},
+    {   codigo: "AG_PEN_ORD_DET", descripcion: "AG - Pendientes de simulación (Detalle)", modulo: "AG"},
+    {   codigo: "AG_PEN_ORD_GRP", descripcion: "AG - Planes de siembra (Grupo)", modulo: "AG"},
+    {   codigo: "AG_PEN_REQ", descripcion: "AG - Pendientes para requerimientos de compras", modulo: "AG"},
+    {   codigo: "AG_PEN_SIE_DET", descripcion: "AG - Pendientes de siembra (Detalle)", modulo: "AG"},
+    {   codigo: "AG_PEN_SIE_GRP", descripcion: "AG - Pendientes de siembra (Grupo)", modulo: "AG"},
+    {   codigo: "AG_PEN_SIM_DET", descripcion: "AG - Pendientes de simulación (Detalle)", modulo: "AG"},
+    {   codigo: "AG_PEN_SIM_GRP", descripcion: "AG - Pendientes de simulación (Grupo)", modulo: "AG"},
+    {   codigo: "AG_STK_DET", descripcion: "AG - Pendientes de productos (Detalle)", modulo: "AG"},
+    {   codigo: "AG_STK_GRP", descripcion: "AG - Pendientes de productos (Grupo)", modulo: "AG"},
+    {   codigo: "AGC_CBH_LST", descripcion: "AG - Comprobantes de agro", modulo: "AG"},
+    {   codigo: "AGCCBH", descripcion: "Comprobantes de agro", modulo: "AG"},
+    {   codigo: "AGCORMVHWIZ", descripcion: "Generación de requerimientos de compras", modulo: "AG"},
+    {   codigo: "AGINFSERWIZ", descripcion: "Generación de informes de servicios de compras", modulo: "AG"},
+    {   codigo: "AGM_CAH_LST", descripcion: "AG - Establecimientos", modulo: "AG"},
+    {   codigo: "AGMCAH", descripcion: "Maestro de Establecimientos", modulo: "AG"},
+    {   codigo: "AGPARAMWIZ", descripcion: "Definición de parametros de gestión agropecuaria", modulo: "AG"},
+    {   codigo: "AGR_APL_LST", descripcion: "AG - Aplicaciones de Agro", modulo: "AG"},
+    {   codigo: "AGR_MVH_LST", descripcion: "AG - Movimientos de Agro", modulo: "AG"},
+    {   codigo: "AGR_MVH_PCI", descripcion: "AG - Ordenes de siembra pendientes de cierre (Grupo)", modulo: "AG"},
+    {   codigo: "AGR_MVH_PRV", descripcion: "AG - Ordenes de siembra finalizadas (Grupo)", modulo: "AG"},
+    {   codigo: "AGRMVH", descripcion: "Registración de Gestión Agropecuaria", modulo: "AG"},
+    {   codigo: "AGRMVHAPLUPDWIZ", descripcion: "Modificación de aplicaciones de Gestión Agropecuaria", modulo: "AG"},
+    {   codigo: "AGRMVHUPD", descripcion: "Modificación de comprobantes de Gestión Agropecuaria", modulo: "AG"},
+    {   codigo: "AGRMVHWIZ", descripcion: "Registración de gestión agropecuaria", modulo: "AG"},
+    {   codigo: "AGT_ACT_LST", descripcion: "AG - Labores", modulo: "AG"},
+    {   codigo: "AGT_ATH_LST", descripcion: "AG - Atributos", modulo: "AG"},
+    {   codigo: "AGT_CAH_LST", descripcion: "AG - Campañas", modulo: "AG"},
+    {   codigo: "AGT_CIH_LST", descripcion: "AG - Circuitos de agro", modulo: "AG"},
+    {   codigo: "AGT_CIR_LST", descripcion: "AG - Códigos de circuitos de agro", modulo: "AG"},
+    {   codigo: "AGT_FOH_LST", descripcion: "AG - Composición de Recetas", modulo: "AG"},
+    {   codigo: "AGT_FOI_LST", descripcion: "AG - Composición de receta", modulo: "AG"},
+    {   codigo: "AGT_FOR_LST", descripcion: "AG - Tipo de Recetas", modulo: "AG"},
+    {   codigo: "AGT_REH_LST", descripcion: "AG - Responsables", modulo: "AG"},
+    {   codigo: "AGT_TCH_LST", descripcion: "AG - Tipo de Establecimiento", modulo: "AG"},
+    {   codigo: "AGT_TEH_LST", descripcion: "AG - Tipo de Explotación", modulo: "AG"},
+    {   codigo: "AGT_VAR_LST", descripcion: "AG - Variedad", modulo: "AG"},
+    {   codigo: "AGTACT", descripcion: "Labores", modulo: "AG"},
+    {   codigo: "AGTATH", descripcion: "Atributos", modulo: "AG"}
   ];
+  constructor(public store:Store<AppState>) { }
 
-
-  constructor() { }
-
-  getmodulos():any{
-    return this.Modulos
+  getmodulos():Observable<any>{
+    return new Observable(modulos =>{
+      modulos.next(this.modulos);
+    });
   }
 
-  getobjetosconfiltro(modulo:string):any{
-    let Resultados:any[]=[];
-    let Codigoobjeto:string;
-    let filtro:string = modulo.toUpperCase();
-
-      for (let i = 0; i < this.Objetos.length; i++) {
-          Codigoobjeto = this.Objetos[i].Modulo.toUpperCase();
-          //console.log(NombreHeroe.indexOf(filtro));
-          if (Codigoobjeto.indexOf(filtro) >= 0) {
-            Resultados.push(this.Objetos[i]);
-          };
-      };
-      return Resultados;
+  getObjetosConFiltro(modulo:string):modulo[] {
+    return this.objetos.filter( data => data.modulo === modulo);
   }
-  getpartesconfiltro(termino:string):any{
-    let Resultados:any[]=[];
-    let Codigoparte:string;
-    let filtro:string = termino.toUpperCase();
+  getPartesConFiltro(termino:string):Observable<any>{
+    let resultados:any[];
+    let modulo:string;
+    let version:number;
+    let objeto:string;
+    let regex = new RegExp(termino,'i');
 
-      for (let i = 0; i < this.Partes.length; i++) {
-          Codigoparte = this.Partes[i].Codigo.toUpperCase();
-          //console.log(NombreHeroe.indexOf(filtro));
-          if (Codigoparte.indexOf(filtro) >= 0) {
-            Resultados.push(this.Partes[i]);
-          };
-      };
-      return Resultados;
+    this.store.select('filtro').subscribe( data =>{
+      modulo = data.filtro.modulo;
+      version = data.filtro.version;
+      objeto = data.filtro.objeto;
+    })
+
+    resultados = this.partes.filter(data=> data.modulo == modulo && data.version == version && data.objeto == objeto);
+    if(termino){
+      resultados = resultados.filter(data=> regex.test(data.descripcion));
+    }
+    return new Observable(res =>{
+      res.next(resultados);
+    });;
   };
+
+  guardarFiltrosStore(filtros:Filtro){
+    this.store.dispatch(new CargarFilterAction(filtros));
+  }
+}
+interface modulo{
+  codigo:string,
+  descripcion:string
 }

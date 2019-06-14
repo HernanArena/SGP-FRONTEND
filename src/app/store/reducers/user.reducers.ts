@@ -1,5 +1,5 @@
 import { Usuario } from 'src/app/models/usuario.model';
-import * as fromUsuario from '../actions/usuario.actions';
+import * as fromUsuario from '../actions/user.actions';
 
 export interface UsuarioState{
   user: Usuario;

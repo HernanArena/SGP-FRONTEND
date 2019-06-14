@@ -1,6 +1,10 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FinderService } from 'src/app/services/finder/finder.service';
+import { Parte } from 'src/app/models/parte.model';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/store/app.reducer';
+import { CargarPartes } from 'src/app/store/actions';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -9,78 +13,28 @@ import { FinderService } from 'src/app/services/finder/finder.service';
   styleUrls: ['./finder.component.css']
 })
 
-export class FinderComponent implements OnInit {
+export class FinderComponent implements OnInit,OnDestroy {
 
-  @Input () modulo:string;
-  @Input () objeto:string;
-  @Input () version:string;
-
-  partes:any;
-  datosbusquedalocalstorage:any;
-  default:string;
+  partes:Parte[];
   _termino:string;
+  storeSubscription:Subscription;
 
-  constructor(private finderservice:FinderService,
-              private router:Router) {
-    this.finderservice.cargarStorage();
-    this.datosbusquedalocalstorage = this.finderservice.datosbusqueda;
-    this.default = localStorage.getItem('default');
-
-    if (this.default == "true") {
-      this._termino = this.datosbusquedalocalstorage.termino;
-    }
+  constructor(public _fs:FinderService,
+              public store:Store<AppState>) {
+    this.storeSubscription = this.store.select('filtro').subscribe( data => this._termino = data.filtro.termino)
   }
 
   ngOnInit() {
   }
-
-  // buscar(termino:string, modulo:string, objeto:string, version:string){
-  //   this.datosbusqueda = {
-  //     modulo:modulo,
-  //     objeto:objeto,
-  //     version:version,
-  //     termino:termino
-  //   }
-  //   this.finderservice.guardarStorage(this.datosbusqueda);
-  //   this.partes = this.searchservice.getpartesconfiltro(termino);
-  // }
-
   navegararesultsyguardarstorage(){
-    let modulo:string;
-    let objeto:string;
-    let version:string;
-    let termino:string;
-
-     //Si el dato no viene en el @input, lo recupera del localStorage
-    if( this.modulo == null){
-      modulo = this.datosbusquedalocalstorage.modulo;
-      objeto = this.datosbusquedalocalstorage.objeto;
-      version = this.datosbusquedalocalstorage.version;
-      termino  = this.datosbusquedalocalstorage.termino;
+    if(this._termino){
+      this._fs.guardarTerminoStore(this._termino);
     }
-    else {
-      modulo = this.modulo;
-      objeto = this.objeto;
-      version = this.version;
-      termino  = this._termino;
-    }
-
-    //Se usa dentro de un componente
-    let datosbusqueda = {
-      modulo: modulo,
-      objeto: objeto,
-      version: version,
-      termino: termino
-    }
-
-    console.log(datosbusqueda);
-    this.finderservice.guardarStorage(datosbusqueda);
-    this.router.navigate(['/resultados']);
+    this.store.dispatch(new CargarPartes(this._termino));
+  }
+  ngOnDestroy(): void {
+      this.storeSubscription.unsubscribe();
   }
 
-  recuperarterminoprecargado(){
-    let datosbusqueda:any = localStorage.getItem('datosbusqueda');
-    //console.log(datosbusqueda.termino);
-    return datosbusqueda.termino;
-  }
+
 }

@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { AppState } from 'src/app/store/app.reducer';
+import { Store } from '@ngrx/store';
+import { Subscription } from 'rxjs';
+import { Parte } from 'src/app/models/parte.model';
 
 @Component({
   selector: 'app-results',
@@ -6,16 +10,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./results.component.css']
 })
 export class ResultsComponent implements OnInit {
+  partes:Parte[];
+  storeSubscription:Subscription;
 
-  datosbusqueda:any;
-  recuperatermino:boolean;
-
-  constructor() {
-    localStorage.setItem('default', "true");//define si se ve el termino por defecto en el buscador
-    console.log('Logueo desde el constructor: ' + this.recuperatermino);
+  constructor(public store:Store<AppState>) {
+    this.initResults();
   }
 
   ngOnInit() {
+  }
+  initResults(){
+    this.storeSubscription = this.store.select('parte').subscribe( data =>{
+      this.partes = data.parte;
+    })
+
   }
 
 

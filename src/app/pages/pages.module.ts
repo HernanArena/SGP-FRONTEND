@@ -1,7 +1,7 @@
 //module
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 //components
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -27,6 +27,7 @@ import { ResultsComponent } from './results/results.component';
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     PAGES_ROUTING,
     ComponentsModule,
     RouterModule

@@ -1,9 +1,9 @@
 export class Parte {
-  constructor(public Codigo:string,
-              public Numero:number,
-              public Modulo:string,
-              public Objeto:string,
-              public Version:number,
-              public Fecha_de_liberacion:string,
-              public Descripcion:string){}
+  constructor(public codigo:string,
+              public numero:number,
+              public modulo:string,
+              public objeto:string,
+              public version:number,
+              public fecha_de_liberacion:string,
+              public descripcion:string){}
 }

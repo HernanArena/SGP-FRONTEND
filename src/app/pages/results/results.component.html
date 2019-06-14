@@ -1,37 +1,12 @@
 
 <app-finder></app-finder>
-<h4 class="card-title">Search Result For "Angular Js"</h4>
-<h6 class="card-subtitle">About 14,700 result ( 0.10 seconds)</h6>
+<h4 class="card-title">Partes encontrados</h4>
+<h6 class="card-subtitle">Se encontraron {{1}} resultados</h6>
 <ul class="search-listing">
-    <li>
-        <h3><a href="javacript:void(0)">AngularJs</a></h3>
-        <a href="javascript:void(0)" class="search-links">http://www.google.com/angularjs</a>
-        <p>Lorem Ipsum viveremus probamus opus apeirian haec perveniri, memoriter.Praebeat pecunias viveremus probamus opus apeirian haec perveniri, memoriter.</p>
-    </li>
-    <li>
-        <h3><a href="javacript:void(0)">AngularJS — Superheroic JavaScript MVW Framework</a></h3>
-        <a href="javascript:void(0)" class="search-links">http://www.google.com/angularjs</a>
-        <p>Lorem Ipsum viveremus probamus opus apeirian haec perveniri, memoriter.Praebeat pecunias viveremus probamus opus apeirian haec perveniri, memoriter.</p>
-    </li>
-    <li>
-        <h3><a href="javacript:void(0)">AngularJS Tutorial - W3Schools</a></h3>
-        <a href="javascript:void(0)" class="search-links">http://www.google.com/angularjs</a>
-        <p>Lorem Ipsum viveremus probamus opus apeirian haec perveniri, memoriter.Praebeat pecunias viveremus probamus opus apeirian haec perveniri, memoriter.</p>
-    </li>
-    <li>
-        <h3><a href="javacript:void(0)">Introduction to AngularJS - W3Schools</a></h3>
-        <a href="javascript:void(0)" class="search-links">http://www.google.com/angularjs</a>
-        <p>Lorem Ipsum viveremus probamus opus apeirian haec perveniri, memoriter.Praebeat pecunias viveremus probamus opus apeirian haec perveniri, memoriter.</p>
-    </li>
-    <li>
-        <h3><a href="javacript:void(0)">AngularJS Tutorial</a></h3>
-        <a href="javascript:void(0)" class="search-links">http://www.google.com/angularjs</a>
-        <p>Lorem Ipsum viveremus probamus opus apeirian haec perveniri, memoriter.Praebeat pecunias viveremus probamus opus apeirian haec perveniri, memoriter.</p>
-    </li>
-    <li>
-        <h3><a href="javacript:void(0)">Angular 2: One framework.</a></h3>
-        <a href="javascript:void(0)" class="search-links">http://www.google.com/angularjs</a>
-        <p>Lorem Ipsum viveremus probamus opus apeirian haec perveniri, memoriter.Praebeat pecunias viveremus probamus opus apeirian haec perveniri, memoriter.</p>
+    <li *ngFor="let parte of partes">
+        <h3><a href="javacript:void(0)">Version: {{parte.version}}</a></h3>
+        <a href="javascript:void(0)" class="search-links">{{parte.modulo}} - {{parte.objeto}}</a>
+        <p>{{parte.descripcion}}</p>
     </li>
 </ul>
 <nav aria-label="Page navigation example" class="m-t-40">
