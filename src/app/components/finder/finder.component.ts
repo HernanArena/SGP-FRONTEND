@@ -51,7 +51,6 @@ export class FinderComponent implements OnInit {
     let version:string;
     let termino:string;
 
-    console.log(this.recuperatermino);
      //Si el dato no viene en el @input, lo recupera del localStorage
     if( this.modulo == null){
       modulo = this.datosbusquedalocalstorage.modulo;
