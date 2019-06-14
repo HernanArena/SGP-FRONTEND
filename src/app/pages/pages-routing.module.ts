@@ -13,15 +13,18 @@ const pagesRoutes: Routes = [
     },
     { path: 'busqueda',
      component: SearchComponent,
-     data:{ titulo:"Búsqueda avanzada" }
+     data:{ titulo:"Búsqueda avanzada",
+            descrip:"Elija la versión de Softland, módulo y objeto, si es necesario indique el componente Dll"}
     },
     { path: 'panel',
      component: HomeComponent,
-     data:{ titulo:"Panel de consulta" }
+     data:{ titulo:"Panel de consulta",
+            descrip:"Seleccione una opción para comenzar su consulta"}
     },
     { path: 'resultados',
      component: ResultsComponent,
-     data:{ titulo:"Busqueda resultados" }
+     data:{ titulo:"Resultados de búsqueda",
+            descrip:"Si no encuentra los resultados que busca vuelva a la pantalla anteiror"}
     },
     {
       path: '',

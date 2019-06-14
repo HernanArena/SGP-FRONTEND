@@ -10,6 +10,7 @@ import { Meta, MetaDefinition } from '@angular/platform-browser';
 })
 export class BreadcrumbsComponent {
   titulo:string;
+  descrip:string;
 
   constructor(public router:Router,
               private meta:Meta) {
@@ -20,6 +21,7 @@ export class BreadcrumbsComponent {
        console.log(data.titulo);
        if(data.titulo){
          this.titulo = data.titulo;
+         this.descrip = data.descrip;
         const metaTag:MetaDefinition = {
           name: 'Description',
           content: this.titulo
