@@ -6,17 +6,17 @@ export interface AppState{
   ui: fromReducers.UIState;
   usuario:fromReducers.UsuarioState;
   filtro:fromReducers.filterState;
-  parte: fromReducers.BuscarPartesState;
+  cargaresults: fromReducers.BuscarPartesState;
 }
 
 export const appReducers:ActionReducerMap<AppState>= {
   ui: fromReducers.uiReducers,
   usuario: fromReducers.usuarioReducer,
   filtro:fromReducers.filterReducers,
-  parte: fromReducers.buscarParteReducer
+  cargaresults: fromReducers.buscarParteReducer
 }
 
 export function localStorageSyncReducer(reducer: ActionReducer<any>): ActionReducer<any> {
-  return localStorageSync({keys: ['usuario','filtro','parte'],rehydrate:true})(reducer);
+  return localStorageSync({keys: ['usuario','filtro','cargaresults'],rehydrate:true})(reducer);
 }
 export const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];

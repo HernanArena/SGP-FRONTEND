@@ -4,6 +4,7 @@ import { Parte } from 'src/app/models/parte.model';
 export const CARGAR_PARTES = '[DownloadTickets buscadorPartes] buscar partes';
 export const CARGAR_PARTES_FAIL = '[DownloadTickets buscadorPartes] buscar partes FAIL';
 export const CARGAR_PARTES_SUCCESS = '[DownloadTickets buscadorPartes] buscar partes SUCCESS';
+export const MODIFICAR_OKTONAVIGATE = '[DownloadTickets buscadorPartes] buscar partes MODIFICAR OKTONAVIGATE';
 
 //buscar
 export class CargarPartes implements Action{
@@ -21,7 +22,14 @@ export class CargarPartesSuccess implements Action{
   constructor(public parte:Parte[]){}
 }
 
+export class ModificarOkToNavigate implements Action{
+  readonly type = MODIFICAR_OKTONAVIGATE;
+  constructor(public oktonavigate:boolean){}
+}
+
+
 
 export type buscadorParteAcciones = CargarPartes |
                               CargarPartesFail|
-                              CargarPartesSuccess;
+                              CargarPartesSuccess|
+                              ModificarOkToNavigate;

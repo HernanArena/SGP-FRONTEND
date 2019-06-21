@@ -20,13 +20,27 @@ export function filterReducers (state:filterState = initState,action: fromFilter
       return {
         filtro: null
       };
-    case fromFilterActions.AGREGAR_FILTER:
+    case fromFilterActions.AGREGAR_VERSION_FILTER:
       return {
-
+        filtro: {...state.filtro,
+          version: action.version
+        }
+      };
+    case fromFilterActions.AGREGAR_OBJETO_FILTER:
+      return {
+        filtro: {...state.filtro,
+          modulo: action.modulo,
+          objeto: action.objeto
+        }
+      };
+    case fromFilterActions.AGREGAR_TERMINO_FILTER:
+      return {
         filtro: {...state.filtro,
           termino: action.termino
         }
       };
+
+
     default:
       return state;
   }
