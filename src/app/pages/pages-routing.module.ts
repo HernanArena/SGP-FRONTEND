@@ -5,6 +5,7 @@ import { SearchComponent } from './search/search.component';
 
 import { HomeComponent } from './home/home.component';
 import { ResultsComponent } from './results/results.component';
+import { SearchcodeComponent } from './searchcode/searchcode.component';
 
 const pagesRoutes: Routes = [
     { path: 'escritorio',
@@ -21,10 +22,15 @@ const pagesRoutes: Routes = [
      data:{ titulo:"Panel de consulta",
             descrip:"Seleccione una opción para comenzar su consulta"}
     },
+    { path: 'controlados',
+     component: SearchcodeComponent,
+     data:{ titulo:"Busqueda por código",
+            descrip:"Seleccione un error de la siguiente lista"}
+    },
     { path: 'resultados',
      component: ResultsComponent,
      data:{ titulo:"Resultados de búsqueda",
-            descrip:"Si no encuentra los resultados que busca vuelva a la pantalla anteiror"}
+            descrip:"Si no encuentra los resultados que busca vuelva a la pantalla anterior"}
     },
     {
       path: '',

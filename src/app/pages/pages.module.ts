@@ -14,6 +14,7 @@ import { HomeComponent } from './home/home.component';
 import { NewTicketComponent } from './new-ticket/new-ticket.component';
 import { AllTicketsComponent } from './all-tickets/all-tickets.component';
 import { ResultsComponent } from './results/results.component';
+import { SearchcodeComponent } from './searchcode/searchcode.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ResultsComponent } from './results/results.component';
     HomeComponent,
     NewTicketComponent,
     AllTicketsComponent,
-    ResultsComponent
+    ResultsComponent,
+    SearchcodeComponent
   ],
   imports: [
     CommonModule,
@@ -34,7 +36,8 @@ import { ResultsComponent } from './results/results.component';
   ],
   exports:[
     DashboardComponent,
-    SearchComponent
+    SearchComponent,
+    SearchcodeComponent
   ]
 })
 export class PagesModule { }

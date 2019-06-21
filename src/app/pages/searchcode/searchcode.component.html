@@ -1,0 +1,24 @@
+<form class="form-material m-t-40">
+  <div class="form-group">
+    <h3>Ingrese el código o mensaje de error que aparece en pantalla</h3>
+    <p style="text-align:center;"> Luego seleccione de la lista desplegable el error encontrado</p>
+    <div class="will">
+      <input type="text"
+             class="form-control form-control-line"
+             name = "errorCode"
+             id="inputError"
+             [(ngModel)]="_errorCode"
+             (keyup)="recuperarError(errorCode.value)"
+             placeholder="EJ: GR000016 -  Mensaje de error.."
+             #errorCode = "ngModel">
+
+      <div class="listas">
+        <ul *ngFor="let item of codigoSelect" class="list-group">
+          <li (click)="recupera(item.codigo)" class="list-group-item" style="border:none; border-bottom:1px;">
+            <p>{{item.codigo}} - {{item.descripcion}}</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</form>

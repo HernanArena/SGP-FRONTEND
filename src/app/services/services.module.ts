@@ -4,6 +4,8 @@ import { HttpClientModule} from '@angular/common/http'
 import { CommonModule } from '@angular/common';
 import { SearchService } from './search/search.service';
 import { FinderService } from './finder/finder.service';
+import { SearchcodeService } from './searchcode/searchcode.service';
+
 
 
 @NgModule({
@@ -14,7 +16,8 @@ import { FinderService } from './finder/finder.service';
   providers:[
     UsuarioService,
     SearchService,
-    FinderService
+    FinderService,
+    SearchcodeService
   ]
 })
 export class ServicesModule { }
