@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/app.reducer';
-import { AgregarFilterAction} from 'src/app/store/actions';
+import { AgregarFilterTerminoAction} from 'src/app/store/actions';
 import { SearchService } from '../search/search.service';
 
 @Injectable({
@@ -12,12 +12,12 @@ export class FinderService {
   datosbusqueda:any;
 
   constructor(public store:Store<AppState>,
-              public searchservice:SearchService){
+              public _searchservice:SearchService){
   }
   guardarTerminoStore(termino:string){
-    this.store.dispatch(new AgregarFilterAction(termino));
+    this.store.dispatch(new AgregarFilterTerminoAction(termino));
   }
   recuperarPartes(termino:string){
-    return this.searchservice.getPartesConFiltro(termino).pipe();
+    return this._searchservice.getPartesConFiltro(termino).pipe();
   }
 }

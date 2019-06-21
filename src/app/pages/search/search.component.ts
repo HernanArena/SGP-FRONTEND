@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SearchService } from 'src/app/services/search/search.service';
 import { Subscription } from 'rxjs';
-import {Filtro} from 'src/app/models/filtro.model'
+import { Filtro } from 'src/app/models/filtro.model'
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/app.reducer';
 import { Router } from '@angular/router';
@@ -54,21 +54,28 @@ export class SearchComponent implements OnInit,OnDestroy{
     this.objeto = objeto;
   }
 
-  grabaFiltroObjeto(objeto:string){
-    this.recuperarObjeto(objeto);
-    let filtros = new Filtro(this.version,this.modulo,objeto,"");
-    this._sp.guardarFiltrosStore(filtros);
-  }
   grabaFiltroVersion(version:number){
     this.recuperarVersion(version);
-    let filtros = new Filtro(version,this.modulo,this.objeto,"");
-    this._sp.guardarFiltrosStore(filtros);
+
+    if (this.store.select('filtro') == null ) {
+        let filtros = new Filtro(version,this.modulo,this.objeto,"");
+        this._sp.cargarFiltrosStore(filtros);
+    }
+    this._sp.AgregarVersionStore(version);
   }
-  grabaFiltroModulo(modulo:string){
-    this.recuperarModulos(modulo);
-    let filtros = new Filtro(this.version,modulo,this.objeto,"");
-    this._sp.guardarFiltrosStore(filtros);
+
+  grabaFiltroObjeto(objeto:string){
+    this.recuperarObjeto(objeto);
+
+    if (this.store.select('filtro') == null ) {
+        let filtros = new Filtro(this.version,this.modulo,objeto,"");
+        this._sp.cargarFiltrosStore(filtros);
+    }
+    this._sp.AgregarObjetoStore(this.modulo, objeto);
   }
+
+
+
   ngOnDestroy(): void {
     this.moduloSubscription.unsubscribe();
     this.storeSubscription.unsubscribe();

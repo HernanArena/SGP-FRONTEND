@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/internal/Observable';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/app.reducer';
 import { Filtro } from 'src/app/models/filtro.model';
-import { CargarFilterAction } from 'src/app/store/actions';
+import { CargarFilterAction, AgregarFilterVersionAction, AgregarFilterObjetoAction } from 'src/app/store/actions';
 
 @Injectable({
   providedIn: 'root'
@@ -35,6 +35,91 @@ export class SearchService {
       objeto: "AG_PEN_COS",
       version: 410,
       fecha_de_liberacion: "2019-06-14",
+      descripcion:`Aplicación
+                    Exportacion de transacciones (INIMTRSXWIZ).
+
+                    Al elegir una interfaz y tildarla, el sistema no habilita los campos VIRT_TXTPAT ni VIRT_TXTNAM en el paso "Ingreso del tipo de transaccion" (INIMTRSX02).
+
+                    Esto no permite avanzar en el proceso, HERNY dado que el sistema siempre da el error de "Archivo inexistente".
+
+                    La version de la dll IN_WW_EXPTRA.dll es la 3.7.0.201
+                    `
+    },
+    {
+      codigo: "HA",
+      numero: 140,
+      modulo: "AG",
+      objeto: "AG_PEN_COS",
+      version: 410,
+      fecha_de_liberacion: "2019-06-20",
+      descripcion:`Aplicación
+                    Exportacion de transacciones (INIMTRSXWIZ).
+
+                    Al elegir una interfaz y tildarla, el sistema no habilita los campos VIRT_TXTPAT ni VIRT_TXTNAM en el paso "Ingreso del tipo de transaccion" (INIMTRSX02).
+
+                    Esto no permite avanzar en el proceso, HERNY dado que el sistema siempre da el error de "Archivo inexistente".
+
+                    La version de la dll IN_WW_EXPTRA.dll es la 3.7.0.201
+                    `
+    },
+    {
+      codigo: "HA",
+      numero: 200,
+      modulo: "AG",
+      objeto: "AG_PEN_COS",
+      version: 410,
+      fecha_de_liberacion: "2020-06-14",
+      descripcion:`Aplicación
+                    Exportacion de transacciones (INIMTRSXWIZ).
+
+                    Al elegir una interfaz y tildarla, el sistema no habilita los campos VIRT_TXTPAT ni VIRT_TXTNAM en el paso "Ingreso del tipo de transaccion" (INIMTRSX02).
+
+                    Esto no permite avanzar en el proceso, HERNY dado que el sistema siempre da el error de "Archivo inexistente".
+
+                    La version de la dll IN_WW_EXPTRA.dll es la 3.7.0.201
+                    `
+    },
+    {
+      codigo: "HA",
+      numero: 250,
+      modulo: "AG",
+      objeto: "AG_PEN_COS",
+      version: 410,
+      fecha_de_liberacion: "2019-08-14",
+      descripcion:`Aplicación
+                    Exportacion de transacciones (INIMTRSXWIZ).
+
+                    Al elegir una interfaz y tildarla, el sistema no habilita los campos VIRT_TXTPAT ni VIRT_TXTNAM en el paso "Ingreso del tipo de transaccion" (INIMTRSX02).
+
+                    Esto no permite avanzar en el proceso, HERNY dado que el sistema siempre da el error de "Archivo inexistente".
+
+                    La version de la dll IN_WW_EXPTRA.dll es la 3.7.0.201
+                    `
+    },
+    {
+      codigo: "HA",
+      numero: 590,
+      modulo: "AG",
+      objeto: "AG_PEN_COS",
+      version: 410,
+      fecha_de_liberacion: "2019-02-20",
+      descripcion:`Aplicación
+                    Exportacion de transacciones (INIMTRSXWIZ).
+
+                    Al elegir una interfaz y tildarla, el sistema no habilita los campos VIRT_TXTPAT ni VIRT_TXTNAM en el paso "Ingreso del tipo de transaccion" (INIMTRSX02).
+
+                    Esto no permite avanzar en el proceso, HERNY dado que el sistema siempre da el error de "Archivo inexistente".
+
+                    La version de la dll IN_WW_EXPTRA.dll es la 3.7.0.201
+                    `
+    },
+    {
+      codigo: "HA",
+      numero: 1790,
+      modulo: "AG",
+      objeto: "AG_PEN_COS",
+      version: 410,
+      fecha_de_liberacion: "2019-12-20",
       descripcion:`Aplicación
                     Exportacion de transacciones (INIMTRSXWIZ).
 
@@ -192,6 +277,7 @@ export class SearchService {
     })
 
     resultados = this.partes.filter(data=> data.modulo == modulo && data.version == version && data.objeto == objeto);
+    console.log(resultados);
     if(termino){
       resultados = resultados.filter(data=> regex.test(data.descripcion));
     }
@@ -200,9 +286,18 @@ export class SearchService {
     });;
   };
 
-  guardarFiltrosStore(filtros:Filtro){
+  cargarFiltrosStore(filtros:Filtro){
     this.store.dispatch(new CargarFilterAction(filtros));
   }
+
+  AgregarVersionStore(version:number){
+    this.store.dispatch(new AgregarFilterVersionAction(version));
+  }
+
+  AgregarObjetoStore(modulo:string,objeto:string){
+    this.store.dispatch(new AgregarFilterObjetoAction(modulo,objeto));
+  }
+
 }
 interface modulo{
   codigo:string,
