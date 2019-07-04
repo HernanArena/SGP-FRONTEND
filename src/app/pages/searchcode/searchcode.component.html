@@ -2,8 +2,8 @@
   <div class="form-group">
     <h3>Ingrese el código o mensaje de error que aparece en pantalla</h3>
     <p style="text-align:center;"> Luego seleccione de la lista desplegable el error encontrado</p>
-    <div class="will">
-      <input type="text"
+    <div class="select-code">
+          <input type="text"
              class="form-control form-control-line"
              name = "errorCode"
              id="inputError"
@@ -21,4 +21,5 @@
       </div>
     </div>
   </div>
+  <button (click) = "mostrarModal()" class="btn btn-primary">Buscar</button>
 </form>

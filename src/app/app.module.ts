@@ -24,6 +24,7 @@ import { PagesComponent } from './pages/pages.component';
 
 //Routes
 import { APP_ROUTING } from './app-routing.module';
+import { ComponentsModule } from './components/components.module';
 
 
 
@@ -41,6 +42,7 @@ import { APP_ROUTING } from './app-routing.module';
     FormsModule,
     SharedModule,
     RouterModule,
+    ComponentsModule,
     ServicesModule,
     StoreModule.forRoot(appReducers,{metaReducers}),
     EffectsModule.forRoot(AllEffects),

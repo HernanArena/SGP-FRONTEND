@@ -1,0 +1,28 @@
+<div class="fondo-negro animated fadeIn" [ngClass]="_ms.oculto">
+  <div class="modal-sp" style="display: block; overflow: scroll;" tabindex="-1" role="dialog" >
+    <div class="modal-sp-dialog" role="document">
+      <div class="modal-sp-content">
+        <div class="modal-sp-header">
+          <h5 class="modal-sp-title">Sobre el error: <span>Error X</span></h5>
+          <button (click)="cerrarModal()" type="button" class="close-sp" aria-label="Close-sp">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-sp-body" align="center">
+          <div class="row">
+            <div class="col-8">
+              <h4>Centro</h4>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam hendrerit risus libero, nec auctor magna consequat sed. Fusce maximus pulvinar ante sit amet ornare. Curabitur gravida ipsum risus, at cursus leo scelerisque non. Nam nec ex a ex egestas auctor. Proin magna tortor, facilisis et nulla a, tempus mollis lorem. Donec ut ex rutrum, bibendum enim sed, aliquet enim. Mauris egestas sem quis tellus consectetur, sit amet scelerisque lorem pulvinar. Nam dolor sapien, ultricies eu aliquam vel, pulvinar at dui. Nunc cursus magna non libero venenatis, ut ultrices ipsum pellentesque. Sed non consequat dui, efficitur vestibulum nisi. Sed dictum augue nec sapien fermentum imperdiet. Phasellus porta dui sagittis euismod dapibus. Donec luctus, odio et ornare consequat, nibh elit venenatis dolor, quis rhoncus magna libero at nibh.</p>
+            </div>
+            <div class="col-4 modal-sp-column">Columna</div>
+          </div>
+
+        </div>
+        <div class="modal-sp-footer">
+               Descargar archivos adjuntos: <button (click)="subirImagen()" type="button" class="btn btn-primary">Click aqui</button>  <button (click)="cerrarModal()"  type="button" class="btn btn-secondary" >Cerrar</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Codigo } from 'src/app/models/codigo.model';
 import { SearchcodeService } from 'src/app/services/searchcode/searchcode.service';
+import { ModalService } from 'src/app/services/modal/modal.service';
 
 
 @Component({
@@ -14,7 +15,7 @@ export class SearchcodeComponent implements OnInit {
   codigoSelect: Codigo[]=[];
   _errorCode:string;
 
-  constructor(public _scs:SearchcodeService) { }
+  constructor(public _scs:SearchcodeService, public _ms:ModalService) { }
 
 
   ngOnInit() {
@@ -39,5 +40,9 @@ export class SearchcodeComponent implements OnInit {
 
     console.log(data);
   }
+  mostrarModal(){
+    this._ms.mostrarModal('','');
+  }
+
 
 }

@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { SearchService } from './search/search.service';
 import { FinderService } from './finder/finder.service';
 import { SearchcodeService } from './searchcode/searchcode.service';
+import { ModalService } from './modal/modal.service';
 
 
 
@@ -17,7 +18,8 @@ import { SearchcodeService } from './searchcode/searchcode.service';
     UsuarioService,
     SearchService,
     FinderService,
-    SearchcodeService
+    SearchcodeService,
+    ModalService
   ]
 })
 export class ServicesModule { }
