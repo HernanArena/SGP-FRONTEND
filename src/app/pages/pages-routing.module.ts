@@ -6,6 +6,7 @@ import { SearchComponent } from './search/search.component';
 import { HomeComponent } from './home/home.component';
 import { ResultsComponent } from './results/results.component';
 import { SearchcodeComponent } from './searchcode/searchcode.component';
+import { NewTicketComponent } from './new-ticket/new-ticket.component';
 
 const pagesRoutes: Routes = [
     { path: 'escritorio',
@@ -31,6 +32,11 @@ const pagesRoutes: Routes = [
      component: ResultsComponent,
      data:{ titulo:"Resultados de búsqueda",
             descrip:"Si no encuentra los resultados que busca vuelva a la pantalla anterior"}
+    },
+    { path: 'new-ticket',
+     component: NewTicketComponent,
+     data:{ titulo:"Alta de nuevo parte",
+            descrip:"Formulario de alta de parte"}
     },
     {
       path: '',

@@ -21,6 +21,11 @@ export class SearchComponent implements OnInit,OnDestroy{
   moduloSubscription:Subscription;
   storeSubscription:Subscription;
 
+  //ngmodel
+  _versionseleccionada:number;
+  _moduloseleccionado:string;
+  _objetoseleccionado:string;
+
   modulo:string;
   version:number;
   objeto:string;
@@ -31,11 +36,32 @@ export class SearchComponent implements OnInit,OnDestroy{
     this.moduloSubscription = this._sp.getmodulos().subscribe(modulos=>{
       this.modulos = modulos;
     });
+
     this.storeSubscription = this.store.select('cargaresults').subscribe(data=>{
       if(data.oktonavigate){
          this.router.navigate(['/resultados']);
       }
     });
+
+    this.storeSubscription = this.store.select('filtro').subscribe(data=>{
+      if (data.filtro.version) {
+          this._versionseleccionada = data.filtro.version
+      }
+    });
+
+    this.storeSubscription = this.store.select('filtro').subscribe(data=>{
+      if (data.filtro.modulo) {
+          this._moduloseleccionado = data.filtro.modulo;
+          this.recuperarModulos(this._moduloseleccionado);
+      }
+    });
+
+    this.storeSubscription = this.store.select('filtro').subscribe(data=>{
+      if (data.filtro.objeto) {
+          this._objetoseleccionado = data.filtro.objeto
+      }
+    });
+
   }
 
   ngOnInit() {

@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { Parte } from 'src/app/models/parte.model';
 import { ModificarOkToNavigate } from 'src/app/store/actions';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-results',
@@ -18,7 +19,8 @@ export class ResultsComponent implements OnInit {
   paginas:any[] = [];
 
 
-  constructor(public store:Store<AppState>) {
+  constructor(public store:Store<AppState>,
+              private router:Router) {
     this.initResults();
     this.modificarOktonavigate();
   }
@@ -79,6 +81,12 @@ export class ResultsComponent implements OnInit {
   };
   modificarOktonavigate(){
     this.store.dispatch(new ModificarOkToNavigate(false));
+  }
+  vuelvoaSearch(){
+    this.router.navigate(['/busqueda']);
+  }
+  altadeParteNavigate() {
+    this.router.navigate(['/new-ticket']);
   }
 
 }

@@ -1,3 +1,76 @@
-<p>
-  new-ticket works!
-</p>
+<div class="col-md-10">
+  <form class="form-horizontal">
+      <fieldset disabled>
+        <div class="form-group row">
+            <label for="inputVersion" class="col-sm-3 text-right control-label col-form-label">Versión</label>
+            <div class="col-sm-9">
+                <input type="text"
+                       name="version"
+                       class="form-control form-control-line"
+                       [(ngModel)]="_version"
+                       #version="ngModel">
+            </div>
+        </div>
+        <div class="form-group row">
+          <label for="inputModulo" class="col-sm-3 text-right control-label col-form-label">Módulo</label>
+          <div class="col-sm-9">
+              <input type="text"
+                     name="modulo"
+                     class="form-control"
+                     [(ngModel)]="_modulo"
+                     #modulo="ngModel">
+          </div>
+        </div>
+        <div class="form-group row"
+             style="margin-top: 10px;">
+             <label for="inputObjeto" class="col-sm-3 text-right control-label col-form-label">Objeto</label>
+             <div class="col-sm-9">
+                 <input type="text"
+                        name="objeto"
+                        class="form-control"
+                        [(ngModel)]="_objeto"
+                        #objeto="ngModel">
+             </div>
+        </div>
+        <div class="form-group row">
+            <label for="inputDLL" class="col-sm-3 text-right control-label col-form-label">DLL</label>
+            <div class="col-sm-9">
+                <input type="text"
+                       class="form-control"
+                       id="inputDLL"
+                       placeholder="DLL">
+            </div>
+        </div>
+      </fieldset>
+
+      <div class="form-group row">
+        <label for="validationTextarea" class="col-sm-3 text-right control-label col-form-label">Descripción del error</label>
+        <div class="col-sm-9">
+          <textarea
+            class="form-control"
+            [ngClass]="{'is-invalid':(descripcionerror.errors?.required && descripcionerror.touched),
+                        'is-valid':(!descripcionerror.errors?.required && descripcionerror.touched)}"
+            id="validationTextarea"
+            placeholder="Escriba una descripción del error, por favor"
+            required
+            [(ngModel)]="_descripcionerror"
+            name = "descripcionerror"
+            #descripcionerror = "ngModel">
+          </textarea>
+          <div *ngIf="descripcionerror.errors?.required && descripcionerror.touched" class="invalid-feedback">
+            Es obligatorio el ingreso de una descripción del error
+          </div>
+        </div>
+
+      </div>
+      <div class="form-group row">
+        <label for="validationTextarea" class="col-sm-3 text-right control-label col-form-label">Grado de ocurrencia</label>
+        <div class="col-sm-9">
+          <select class="form-control custom-select">
+              <option value="A">La operación está interrumpida a causa del error</option>
+              <option value="B">El error se puede solucionar con intervención del usuario</option>
+          </select>
+        </div>
+      </div>
+  </form>
+</div>
