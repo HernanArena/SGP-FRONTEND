@@ -10,13 +10,69 @@
         </div>
         <div class="modal-sp-body" align="center">
           <div class="row">
-            <div class="col-8">
-              <h4>Centro</h4>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam hendrerit risus libero, nec auctor magna consequat sed. Fusce maximus pulvinar ante sit amet ornare. Curabitur gravida ipsum risus, at cursus leo scelerisque non. Nam nec ex a ex egestas auctor. Proin magna tortor, facilisis et nulla a, tempus mollis lorem. Donec ut ex rutrum, bibendum enim sed, aliquet enim. Mauris egestas sem quis tellus consectetur, sit amet scelerisque lorem pulvinar. Nam dolor sapien, ultricies eu aliquam vel, pulvinar at dui. Nunc cursus magna non libero venenatis, ut ultrices ipsum pellentesque. Sed non consequat dui, efficitur vestibulum nisi. Sed dictum augue nec sapien fermentum imperdiet. Phasellus porta dui sagittis euismod dapibus. Donec luctus, odio et ornare consequat, nibh elit venenatis dolor, quis rhoncus magna libero at nibh.</p>
+            <div class="col">
+              <h4>El total del comprobante o la cuenta contable, no coincide con lo ingresado en el módulo de Tesorería</h4>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam hendrerit risus libero, nec auctor magna consequat sed. Fusce maximus pulvinar ante sit amet ornare. Curabitur gravida ipsum risus, at cursus leo scelerisque non. Nam nec ex a ex egestas auctor. Proin magna tortor, facilisis et nulla a, tempus mollis lorem. Donec ut ex rutrum, bibendum enim sed, aliquet enim. Mauris egestas sem quis tellus consectetur, sit amet scelerisque lorem pulvinar. <br>Nam dolor sapien, ultricies eu aliquam vel, pulvinar at dui. Nunc cursus magna non libero venenatis, ut ultrices ipsum pellentesque. Sed non consequat dui, efficitur vestibulum nisi. Sed dictum augue nec sapien fermentum imperdiet. Phasellus porta dui sagittis euismod dapibus. Donec luctus, odio et ornare consequat, nibh elit venenatis dolor, quis rhoncus magna libero at nibh.</p>
             </div>
-            <div class="col-4 modal-sp-column">Columna</div>
-          </div>
+            <div class="col modal-sp-column">Sugerencias para solucionar el error:
+                  <div id="accordionexample" class="accordion" role="tablist" aria-multiselectable="true">
+                    <div class="card">
+                      <div class="card-header" role="tab" id="headingOne">
+                        <h5 class="mb-0">
+                          <a data-toggle="collapse" data-parent="#accordionexample" href="#collapseexaOne" aria-expanded="true" aria-controls="collapseexaOne">
+                             1- Revise el tipo de numeración del formulario
+                          </a>
+                        </h5>
+                      </div>
 
+                      <div id="collapseexaOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
+                        <div class="card-body">
+                          Ingrese al objeto VTCFOR, busque el forulario que necesita editar y revise el tipo de numeracion que figura seleccionado,<br>
+                          - Automatica<br>
+                          - Renumeracion mensual<br>
+                          - Semi-Automática<br>
+                          - Irrestricta<br>
+                          <img src="../assets/images/numeracion.jpeg" width="100%" height="auto" />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card">
+                      <div class="card-header" role="tab" id="headingTwo">
+                        <h5 class="mb-0">
+                          <a class="collapsed" data-toggle="collapse" data-parent="#accordionexample" href="#collapseexaTwo" aria-expanded="false" aria-controls="collapseexaTwo">
+                            2 - Revise los conceptos asociacos al comprobante de venta
+                          </a>
+                        </h5>
+                      </div>
+                      <div id="collapseexaTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
+                        <div class="card-body">
+                          3 - Ingrese al objeto VTCCBH, revise si los conceptos asociados al comprobante en la tabla hija se encuentran correctamente configurados.
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card">
+                      <div class="card-header" role="tab" id="headingThree">
+                        <h5 class="mb-0">
+                          <a class="collapsed" data-toggle="collapse" data-parent="#accordionexample" href="#collapseexaThree" aria-expanded="false" aria-controls="collapseexaThree">
+                            Revise la estructura de cálculos asociada al concepto de venta
+                          </a>
+                        </h5>
+                      </div>
+                      <div id="collapseexaThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
+                        <div class="card-body">
+                           Ingrese al objeto VTCECH, busque el código de concepto utilizado para el formulario de venta que desea configurar, revise la cuenta contable asociado al mismo y la fórmula utilizada.
+                           <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                              <strong>No modifique la fórmula!</strong> si no está seguro de modificarlo, solicite asistencia a traves de nuestros canales de contacto.
+                              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
         </div>
         <div class="modal-sp-footer">
                Descargar archivos adjuntos: <button (click)="subirImagen()" type="button" class="btn btn-primary">Click aqui</button>  <button (click)="cerrarModal()"  type="button" class="btn btn-secondary" >Cerrar</button>
