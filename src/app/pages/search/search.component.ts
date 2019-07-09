@@ -16,8 +16,10 @@ export class SearchComponent implements OnInit,OnDestroy{
 
 
   partes:any = "";
+  versiones:any[] =[];
   modulos:any[] = [];
   objetos:any[] = [];
+  versionSubscription:Subscription;
   moduloSubscription:Subscription;
   storeSubscription:Subscription;
 
@@ -35,6 +37,10 @@ export class SearchComponent implements OnInit,OnDestroy{
               private router:Router) {
     this.moduloSubscription = this._sp.getmodulos().subscribe(modulos=>{
       this.modulos = modulos;
+    });
+
+    this.versionSubscription = this._sp.getversiones().subscribe(versiones=>{
+      this.versiones = versiones;
     });
 
     this.storeSubscription = this.store.select('cargaresults').subscribe(data=>{

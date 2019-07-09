@@ -15,8 +15,8 @@ const pagesRoutes: Routes = [
     },
     { path: 'busqueda',
      component: SearchComponent,
-     data:{ titulo:"Búsqueda avanzada",
-            descrip:"Elija la versión de Softland, módulo y objeto, si es necesario indique el componente Dll"}
+     data:{ titulo:"Búsqueda de partes",
+            descrip:"Ingrese los siguientes describiendo el error. En caso de contar con soluciones liberadas que coincidan con su búsqueda, se mostrarán sus resultados."}
     },
     { path: 'panel',
      component: HomeComponent,
@@ -31,7 +31,7 @@ const pagesRoutes: Routes = [
     { path: 'resultados',
      component: ResultsComponent,
      data:{ titulo:"Resultados de búsqueda",
-            descrip:"Si no encuentra los resultados que busca vuelva a la pantalla anterior"}
+            descrip:"A continuación se muestran los resultados para el error informado. En caso de no encontrar la solución a su inconveniente, avanzará a la carga del parte."}
     },
     { path: 'new-ticket',
      component: NewTicketComponent,

@@ -1,9 +1,10 @@
-<div class="input-group">
-  <input type="text" class="form-control" placeholder="Ingrese un término de busqueda..."
+<div class="input-group flex-column">
+  <textarea  class="form-control" placeholder="Ingrese un término de busqueda..."
   name = "termino"
   [(ngModel)] = "_termino"
   #termino = "ngModel">
-  <span class="input-group-btn">
-    <button class="btn btn-info" (click) ="navegararesultsyguardarstorage()" type="button">Buscar</button>
-  </span>
+  </textarea>
+  <div class="mx-auto mt-1">
+    <button class="btn btn-primary" type="button" (click) ="navegararesultsyguardarstorage()" type="button">Buscar</button>
+  </div>
 </div>

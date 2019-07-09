@@ -1,45 +1,54 @@
-<div class="col-md-10">
-  <form class="form-horizontal">
+<div>
+  <form >
       <fieldset disabled>
-        <div class="form-group row">
-            <label for="inputVersion" class="col-sm-3 text-right control-label col-form-label">Versión</label>
-            <div class="col-sm-9">
-                <input type="text"
-                       name="version"
-                       class="form-control form-control-line"
-                       [(ngModel)]="_version"
-                       #version="ngModel">
-            </div>
-        </div>
-        <div class="form-group row">
-          <label for="inputModulo" class="col-sm-3 text-right control-label col-form-label">Módulo</label>
-          <div class="col-sm-9">
-              <input type="text"
-                     name="modulo"
-                     class="form-control"
-                     [(ngModel)]="_modulo"
-                     #modulo="ngModel">
-          </div>
-        </div>
-        <div class="form-group row"
-             style="margin-top: 10px;">
-             <label for="inputObjeto" class="col-sm-3 text-right control-label col-form-label">Objeto</label>
-             <div class="col-sm-9">
-                 <input type="text"
-                        name="objeto"
-                        class="form-control"
-                        [(ngModel)]="_objeto"
-                        #objeto="ngModel">
-             </div>
-        </div>
-        <div class="form-group row">
-            <label for="inputDLL" class="col-sm-3 text-right control-label col-form-label">DLL</label>
-            <div class="col-sm-9">
-                <input type="text"
-                       class="form-control"
-                       id="inputDLL"
-                       placeholder="DLL">
-            </div>
+        <div>
+          <form>
+              <div class="form-row">
+                <div class="form-group text-left col-md-6">
+                    <label for="inputVersion">Versión:</label>
+                    <select class="form-control custom-select"
+                            name = "version"
+                            id="inputVersion"
+                            [(ngModel)]="_version"
+                            #versions = "ngModel">
+                      <optgroup label="Seleccione la versión de su instalación">
+                          <option *ngFor="let idx of versiones" value="{{idx.codigo}}" routerLinkActive = "active" >{{idx.descripcion}}</option>
+                      </optgroup>
+                    </select>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group text-left col-md-6">
+                    <label class="">Módulo:</label>
+                      <select class="form-control custom-select"
+                              name = "modulo"
+                               [(ngModel)]="_modulo"
+                              #modulo="ngModel">
+                        <optgroup label="Seleccione un módulo">
+                            <option *ngFor="let idx of modulos" value="{{idx.codigo}}" routerLinkActive = "active" >{{idx.codigo}} - {{idx.descripcion}}</option>
+                        </optgroup>
+                      </select>
+                </div>
+                <div class="form-group text-left col-md-6">
+                    <label class="">Objeto:</label>
+                      <select class="form-control custom-select"
+                              name="objeto"
+                               [(ngModel)]="_objeto"
+                              #objeto="ngModel">
+                        <optgroup label="Seleccione un objeto del sistema">
+                            <option *ngFor="let idx of objetos" value="{{idx.codigo}}">{{idx.codigo}} - {{idx.descripcion}}</option>
+                        </optgroup>
+                      </select>
+                </div>
+              </div>
+              <div class="form-group text-left">
+                  <label for="inputDLL" class="">DLL:</label>
+                      <input type="text"
+                             class="form-control"
+                             id="inputDLL"
+                             placeholder="DLL">
+              </div>
+          </form>
         </div>
       </fieldset>
 

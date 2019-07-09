@@ -252,11 +252,23 @@ export class SearchService {
     {   codigo: "AGTACT", descripcion: "Labores", modulo: "AG"},
     {   codigo: "AGTATH", descripcion: "Atributos", modulo: "AG"}
   ];
+  versiones:any[] = [
+    { codigo:400, descripcion: "4.0.0"},
+    { codigo:410, descripcion: "4.1.0"},
+    { codigo:420, descripcion: "4.2.0"},
+    { codigo:430, descripcion: "4.3.0"},
+  ];
   constructor(public store:Store<AppState>) { }
 
   getmodulos():Observable<any>{
     return new Observable(modulos =>{
       modulos.next(this.modulos);
+    });
+  }
+  
+  getversiones():Observable<any>{
+    return new Observable(versiones =>{
+      versiones.next(this.versiones);
     });
   }
 
