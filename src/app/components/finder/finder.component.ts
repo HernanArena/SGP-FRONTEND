@@ -21,7 +21,7 @@ export class FinderComponent implements OnInit,OnDestroy {
 
   constructor(public _fs:FinderService,
               public store:Store<AppState>) {
-    this.storeSubscription = this.store.select('filtro').subscribe( data => this._termino = data.filtro.termino)
+    // this.storeSubscription = this.store.select('filtro').subscribe( data => this._termino = data.filtro.termino)
   }
 
   ngOnInit() {

@@ -1,11 +1,25 @@
-<form class="m-t-40" [ngClass]="{'floating-labels': floating}">
-    <div class="form-group ">
+<form [formGroup] = "forma"
+      (ngSubmit) = "guardarCambios()"
+      novalidade = "novalidate"
+      class="m-t-40" [ngClass]="{'floating-labels': floating,
+                                 'has-danger': !forma.get('inputFloating').valid}">
+    <div class="form-group row">
       <div class="select-code">
-        <input type="text" class="form-control"
-                FormControlname = "inputFloating"
-                id="input1">
-        <span class="bar"></span>
-        <label for="input1"  *ngIf="floating">{{placeholder}}</label>
+        <input class="form-control"
+               type="text"
+               formControlName = "inputFloating"
+               id="input1" >
+
+        <span class="bar" ></span>
+        <div *ngIf="forma.controls['inputFloating'].errors?.required"
+            class="form-control-feedback">
+            El nombre es necesario
+        </div>
+        <div *ngIf="forma.get('inputFloating').errors?.minlength"
+            class="form-control-feedback">
+            Por lo menos 3 caracteres.
+        </div>
+        <label for="input1"  *ngIf="floating" >{{placeholder}}</label>
         <div class="listas">
           <ul *ngFor="let item of arrayItem" class="list-group">
             <li (click)="recupera(item.codigo)" class="list-group-item" style="border:none; border-bottom:1px;" routerLinkActive = "active">
@@ -14,5 +28,6 @@
           </ul>
         </div>
       </div>
+
     </div>
 </form>

@@ -35,38 +35,38 @@ export class SearchComponent implements OnInit,OnDestroy{
   constructor(public _sp:SearchService,
               public store:Store<AppState>,
               private router:Router) {
-    this.moduloSubscription = this._sp.getmodulos().subscribe(modulos=>{
-      this.modulos = modulos;
-    });
-
-    this.versionSubscription = this._sp.getversiones().subscribe(versiones=>{
-      this.versiones = versiones;
-    });
-
-    this.storeSubscription = this.store.select('cargaresults').subscribe(data=>{
-      if(data.oktonavigate){
-         this.router.navigate(['/resultados']);
-      }
-    });
-
-    this.storeSubscription = this.store.select('filtro').subscribe(data=>{
-      if (data.filtro.version) {
-          this._versionseleccionada = data.filtro.version
-      }
-    });
-
-    this.storeSubscription = this.store.select('filtro').subscribe(data=>{
-      if (data.filtro.modulo) {
-          this._moduloseleccionado = data.filtro.modulo;
-          this.recuperarModulos(this._moduloseleccionado);
-      }
-    });
-
-    this.storeSubscription = this.store.select('filtro').subscribe(data=>{
-      if (data.filtro.objeto) {
-          this._objetoseleccionado = data.filtro.objeto
-      }
-    });
+    // this.moduloSubscription = this._sp.getmodulos().subscribe(modulos=>{
+    //   this.modulos = modulos;
+    // });
+    //
+    // this.versionSubscription = this._sp.getversiones().subscribe(versiones=>{
+    //   this.versiones = versiones;
+    // });
+    //
+    // this.storeSubscription = this.store.select('cargaresults').subscribe(data=>{
+    //   if(data.oktonavigate){
+    //      this.router.navigate(['/resultados']);
+    //   }
+    // });
+    //
+    // this.storeSubscription = this.store.select('filtro').subscribe(data=>{
+    //   if (data.filtro.version) {
+    //       this._versionseleccionada = data.filtro.version
+    //   }
+    // });
+    //
+    // this.storeSubscription = this.store.select('filtro').subscribe(data=>{
+    //   if (data.filtro.modulo) {
+    //       this._moduloseleccionado = data.filtro.modulo;
+    //       this.recuperarModulos(this._moduloseleccionado);
+    //   }
+    // });
+    //
+    // this.storeSubscription = this.store.select('filtro').subscribe(data=>{
+    //   if (data.filtro.objeto) {
+    //       this._objetoseleccionado = data.filtro.objeto
+    //   }
+    // });
 
   }
 

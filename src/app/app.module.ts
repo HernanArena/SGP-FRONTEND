@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 //@Ngrx
 import { StoreModule } from '@ngrx/store';
@@ -40,6 +40,7 @@ import { ComponentsModule } from './components/components.module';
     BrowserModule,
     APP_ROUTING,
     FormsModule,
+    ReactiveFormsModule,
     SharedModule,
     RouterModule,
     ComponentsModule,
