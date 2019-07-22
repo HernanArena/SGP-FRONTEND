@@ -1,0 +1,18 @@
+<form class="m-t-40" [ngClass]="{'floating-labels': floating}">
+    <div class="form-group ">
+      <div class="select-code">
+        <input type="text" class="form-control"
+                FormControlname = "inputFloating"
+                id="input1">
+        <span class="bar"></span>
+        <label for="input1"  *ngIf="floating">{{placeholder}}</label>
+        <div class="listas">
+          <ul *ngFor="let item of arrayItem" class="list-group">
+            <li (click)="recupera(item.codigo)" class="list-group-item" style="border:none; border-bottom:1px;" routerLinkActive = "active">
+              <p>{{item.codigo}} - {{item.descripcion}}</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+</form>
